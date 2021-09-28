@@ -37,7 +37,7 @@ def cargarEncriptado():
 
 
 
-print("Programa ENCRIPTADOR/DESENCRIPTADOR")
+print("\nPrograma ENCRIPTADOR/DESENCRIPTADOR")
 
 otraOpcion = "y"
 
@@ -55,7 +55,7 @@ while (otraOpcion == "y"):
                 fernet = Fernet(clave)
                 generarEncriptado()
                 encriptado = cargarEncriptado()
-                print("Mensaje ENCRIPTADO: \n",encriptado)
+                print("\nMensaje ENCRIPTADO: \n",encriptado)
                 break
             
             elif(selector == 2):
@@ -63,17 +63,23 @@ while (otraOpcion == "y"):
                 clave = cargarClave()
                 fernet = Fernet(clave)
                 desencriptado = fernet.decrypt(encriptado)
-                print("Mensaje DESENCRIPTADO: \n",desencriptado)
+                print("\nMensaje DESENCRIPTADO: \n",desencriptado)
                 break
             
             else:
-                print("Opcion incorrecta, intente nuevamente")
+                print("\nOpcion incorrecta, intente nuevamente")
         
         except ValueError:
-            print("Opcion incorrecta, intente nuevamente")
+            print("\nOpcion incorrecta, intente nuevamente")
     
-    otraOpcion = input("Desea seleccionar otra opcion? (y/n): ")
+    otraOpcion = input("\nDesea seleccionar otra opcion? (y/n): ")
 
 print("\nFin del programa")
 
-
+"""
+TODO: 
+    Modularizar las funciones e importar el modulo. 
+    Agregar try except en la opcion 2 para casos donde no hay archivos encriptados creados. 
+    Crear .exe con paquetes distribuibles.
+    Agregar GUI.
+"""
