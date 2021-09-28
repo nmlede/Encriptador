@@ -76,9 +76,4 @@ while (otraOpcion == "y"):
 
 print("\nFin del programa")
 
-"""
-TODO: La opcion 1 deberia crear un archivo para almacenar el mensaje original, para que ese mismo
-archivo sea usado por la opcion 2 en el caso que solo necesitemos desencriptar. De esta forma
-se cumple el requisito de que el receptor tenga la clave y el mensaje encriptado para 
-poder desencriptar.
-"""
+
