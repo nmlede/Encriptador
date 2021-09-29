@@ -59,13 +59,15 @@ while (otraOpcion == "y"):
                 break
             
             elif(selector == 2):
-                encriptado = cargarEncriptado()    
-                clave = cargarClave()
-                fernet = Fernet(clave)
-                desencriptado = fernet.decrypt(encriptado)
-                print("\nMensaje DESENCRIPTADO: \n",desencriptado)
-                break
-            
+                try:
+                    encriptado = cargarEncriptado()    
+                    clave = cargarClave()
+                    fernet = Fernet(clave)
+                    desencriptado = fernet.decrypt(encriptado)
+                    print("\nMensaje DESENCRIPTADO: \n",desencriptado)
+                    break
+                except FileNotFoundError:
+                    print("El archivo no existe")
             else:
                 print("\nOpcion incorrecta, intente nuevamente")
         
@@ -81,5 +83,5 @@ TODO:
     Modularizar las funciones e importar el modulo. 
     Agregar try except en la opcion 2 para casos donde no hay archivos encriptados creados. 
     Crear .exe con paquetes distribuibles.
-    Agregar GUI.
+    Agregar GUI
 """
