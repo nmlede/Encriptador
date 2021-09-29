@@ -67,7 +67,8 @@ while (otraOpcion == "y"):
                     print("\nMensaje DESENCRIPTADO: \n",desencriptado)
                     break
                 except FileNotFoundError:
-                    print("El archivo no existe")
+                    print("No se encontraron archivos encriptados")
+                    break
             else:
                 print("\nOpcion incorrecta, intente nuevamente")
         
