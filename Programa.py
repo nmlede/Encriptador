@@ -74,15 +74,13 @@ while (otraOpcion == "y"):
         
         except ValueError:
             print("\nOpcion incorrecta, intente nuevamente")
-    
-    otraOpcion = input("\nDesea seleccionar otra opcion? (y/n): ")
 
-print("\nFin del programa")
+    otraOpcion = input("\nDesea seleccionar otra opcion? (y/n): ")
+    print("\nFin del programa")
 
 """
 TODO: 
     Modularizar las funciones e importar el modulo. 
-    Agregar try except en la opcion 2 para casos donde no hay archivos encriptados creados. 
     Crear .exe con paquetes distribuibles.
     Agregar GUI
 """
