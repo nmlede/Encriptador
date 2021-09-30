@@ -75,7 +75,13 @@ while (otraOpcion == "y"):
         except ValueError:
             print("\nOpcion incorrecta, intente nuevamente")
 
-    otraOpcion = input("\nDesea seleccionar otra opcion? (y/n): ")
+    print("\nDesea seleccionar otra opcion? (y/n): ")
+    while True:
+        otraOpcion = input()
+        if (otraOpcion == "y" or otraOpcion == "n"):
+            break
+        else:
+            print("\nOpcion incorrecta, intente nuevamente")
 
 print("\nFin del programa")
 
