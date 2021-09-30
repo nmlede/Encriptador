@@ -76,7 +76,8 @@ while (otraOpcion == "y"):
             print("\nOpcion incorrecta, intente nuevamente")
 
     otraOpcion = input("\nDesea seleccionar otra opcion? (y/n): ")
-    print("\nFin del programa")
+
+print("\nFin del programa")
 
 """
 TODO: 
