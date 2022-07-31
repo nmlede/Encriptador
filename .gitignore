@@ -1,3 +1,4 @@
+__pycache__
 Mensajes/*.txt
 Claves/*.key
 Encriptados/*.enc
