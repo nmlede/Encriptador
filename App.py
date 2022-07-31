@@ -5,35 +5,35 @@ import os
 ################ Funciones para mostrar informacion ################
 
 def mostrar_mensajes_guardados():
-    print('[INFO] Mensajes:')
     pwd=os.getcwd()
     pwd_str=os.listdir(pwd+'/Mensajes/')
     if len(pwd_str)>0:
+        print('[INFO] Mensajes:')
         os.system('ls '+pwd+'/Mensajes | grep .txt')
     else:
-        print('[INFO] No hay mensajes guardados')
+        print('[INFO] No hay mensajes guardados.')
     return pwd_str
 
 
 def mostrar_claves_guardadas():
-    print('[INFO] Claves:')
     pwd=os.getcwd()
     pwd_str=os.listdir(pwd+'/Claves/')
     if len(pwd_str)>0:
+        print('[INFO] Claves:')
         os.system('ls '+pwd+'/Claves | grep .key')
     else:
-        print('[INFO] No hay claves guardadas')
+        print('[INFO] No hay claves guardadas.')
     return pwd_str
 
 
 def mostrar_encriptados_guardados():
-    print('[INFO] Mensajes encriptados:')
     pwd=os.getcwd()
     pwd_str=os.listdir(pwd+'/Encriptados/')
     if len(pwd_str)>0:
+        print('[INFO] Encriptados:')
         os.system('ls '+pwd+'/Encriptados | grep .enc')
     else:
-        print('[INFO] No hay mensajes encriptados guardados')
+        print('[INFO] No hay mensajes encriptados guardados.')
     return pwd_str
 
 ####################################################################
@@ -66,21 +66,21 @@ def generar_encriptado(mensaje, fernet):
 def cargar_mensaje():
     pwd=mostrar_mensajes_guardados()
     if len(pwd)>0:
-        nombre_mensaje=input('\n[INFO] Ingrese el nombre del mensaje a cargar: ')
-        return open(f"Mensajes/{nombre_mensaje}.txt","rb").read()
+        nombre_mensaje=input('[INFO] Ingrese el nombre del mensaje a cargar: ')
+        return open(f"Mensajes/{nombre_mensaje}.txt","rb").read(), nombre_mensaje
 
 
 def cargar_clave():
     pwd=mostrar_claves_guardadas()
     if len(pwd)>0:
-        nombre_clave=input('\nIngrese el nombre de la clave a cargar: ')
+        nombre_clave=input('[INFO] Ingrese el nombre de la clave a cargar: ')
         return open(f"Claves/{nombre_clave}.key","rb").read()
 
 
 def cargar_encriptado():
     pwd=mostrar_encriptados_guardados()
     if len(pwd)>0:
-        nombre_encriptado=input('\nIngrese el nombre del mensaje encriptado a cargar: ')
+        nombre_encriptado=input('[INFO] Ingrese el nombre del mensaje encriptado a cargar: ')
         return open(f"Encriptados/{nombre_encriptado}.enc","rb").read()
 
 
@@ -95,7 +95,7 @@ def borrar_todo():
 
     if len(pwd_mensajes)>0 and len(pwd_claves)>0 and len(pwd_encriptados)>0: 
         while True:
-            borrar=input('Desea borrar toda la informacion?: (y/n)')
+            borrar=input('[INFO] Desea borrar toda la informacion?: (y/n)')
             if borrar == 'y':
                 os.system('rm '+pwd+'/Mensajes/*.txt')
                 os.system('rm '+pwd+'/Claves/*.key')
@@ -114,33 +114,44 @@ def borrar_todo():
 ####################################################################
 ########## Funciones para eventos encriptar/desencriptar ###########
 
-def encriptar_nuevo_mensaje():
-    generar_mensaje()
-    generar_clave()
-    mensaje=cargar_mensaje()
-    clave=cargar_clave()	
-    fernet = Fernet(clave)
-    generar_encriptado(mensaje, fernet)
-    encriptado = cargar_encriptado()
-    print("[INFO] Mensaje ENCRIPTADO: \n",encriptado)
+def encriptar_mensaje():
+    pwd=os.getcwd()
+    pwd_mensajes=os.listdir(pwd+'/Mensajes/')
+    seleccion=int(input('[INFO] Seleccione una opcion:\n1- Ingresar nuevo mensaje.\n2- Encriptar mensaje existente. \n'))
+    if (seleccion == 1):
+        print('[INFO] Ingresando nuevo mensaje.')
+        generar_mensaje()
+        generar_clave()
+        mensaje, nombre_mensaje=cargar_mensaje()
+        clave=cargar_clave()	
+        fernet = Fernet(clave)
+        generar_encriptado(mensaje, fernet)
+        os.system(f'rm {pwd}/Mensajes/{nombre_mensaje}')    
+ 
+    if (seleccion == 2):
+        if len(pwd_mensajes)>0:
+            mensaje, nombre_mensaje=cargar_mensaje()
+            clave=cargar_clave()
+            fernet=Fernet(clave)
+            generar_encriptado(mensaje, fernet)  
+            os.system(f'rm {pwd}/Mensajes/{nombre_mensaje}')  
 
-
-def encriptado_mensaje_existente():
-    mensaje=cargar_mensaje()
-    clave=cargar_clave()
-    fernet=Fernet(clave)
-    generar_encriptado(mensaje, fernet)
-    encriptado=cargar_encriptado()
-    print('[INFO] Mensaje ENCRIPTADO: \n',encriptado)
+        else:
+            print('[INFO] No hay mensajes guardados.')
+           
 
 
 def desencriptar():
-    encriptado = cargar_encriptado()    
-    clave = cargar_clave()
-    fernet = Fernet(clave)
-    desencriptado = fernet.decrypt(encriptado)
-    print("[INFO] Mensaje DESENCRIPTADO: \n",desencriptado)
-
+    pwd=os.getcwd()
+    pwd_mensajes=os.listdir(pwd+'/Mensajes/')
+    if len(pwd_mensajes)>0:
+        encriptado = cargar_encriptado()    
+        clave = cargar_clave()
+        fernet = Fernet(clave)
+        desencriptado = fernet.decrypt(encriptado)
+        print("[INFO] Mensaje DESENCRIPTADO: \n",desencriptado)
+    else:
+        print('[INFO] No hay mensajes para desencriptar.')
 
 
 ####################################################################
