@@ -1,7 +1,6 @@
 TODO:
 
-1- revisar porque falla la funcion 'desencriptar_mensaje' de App.py.
-2- redireccionar stdout a un widget de texto en la aplicacion.
-3- redireccionar stdin a un widget Entry en la aplicacion.
+1- redireccionar stdout a un widget de texto en la aplicacion.
+2- redireccionar stdin a un widget Entry en la aplicacion.
 
 

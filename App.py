@@ -95,7 +95,7 @@ def borrar_todo():
 
     if len(pwd_mensajes)>0 and len(pwd_claves)>0 and len(pwd_encriptados)>0: 
         while True:
-            borrar=input('[INFO] Desea borrar toda la informacion?: (y/n)')
+            borrar=input('[INFO] Desea borrar toda la informacion?: (y/n)\n')
             if borrar == 'y':
                 os.system('rm '+pwd+'/Mensajes/*.txt')
                 os.system('rm '+pwd+'/Claves/*.key')
@@ -126,7 +126,7 @@ def encriptar_mensaje():
         clave=cargar_clave()	
         fernet = Fernet(clave)
         generar_encriptado(mensaje, fernet)
-        os.system(f'rm {pwd}/Mensajes/{nombre_mensaje}')    
+        os.system(f'rm {pwd}/Mensajes/{nombre_mensaje}.txt')    
  
     if (seleccion == 2):
         if len(pwd_mensajes)>0:
@@ -134,7 +134,7 @@ def encriptar_mensaje():
             clave=cargar_clave()
             fernet=Fernet(clave)
             generar_encriptado(mensaje, fernet)  
-            os.system(f'rm {pwd}/Mensajes/{nombre_mensaje}')  
+            os.system(f'rm {pwd}/Mensajes/{nombre_mensaje}.txt')  
 
         else:
             print('[INFO] No hay mensajes guardados.')
