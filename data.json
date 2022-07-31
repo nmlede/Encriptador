@@ -1,4 +1,7 @@
 {
   "texto_etiqueta":"ENCRIPTADOR",
-  "version_aplicacion":"1.1.0"
+  "version_aplicacion":"1.1.0",
+  "texto_terminal":"Terminal",
+  "font_label":"Ubuntu 12",
+  "font_button":"Ubuntu 8"
 }

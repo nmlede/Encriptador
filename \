@@ -3,6 +3,8 @@
 
 import App
 import tkinter as tk
+from tkinter.messagebox import showwarning
+import subprocess
 from herramientas import leer_config
 
 ####################################################################################
@@ -63,10 +65,19 @@ boton_cv.grid(row=3, column=1, padx=2, pady=1)
 etiqueta_terminal=tk.Label(ventana, text=TEXTO_TERMINAL, font=FONT_LABEL)
 etiqueta_terminal.grid(row=4, column=0, columnspan=4, padx=2, pady=1)
 
-terminal=tk.Frame(ventana, background='black', width=500, height=300)
-terminal.grid(row=5, column=0, rowspan=10, columnspan=3, padx=5, pady=5)
+terminal=tk.Frame(ventana)
+# terminal.pack(fill=tk.BOTH, expand=True)
+terminal.grid(row=5, column=0)
+terminal_id=terminal.winfo_id()
 
-terminal_id = terminal.winfo_id()
+try:
+    process=subprocess.Popen(
+            ['gnome-terminal','-into',str(terminal_id),'-geometry','80x20'],
+            stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+except FileNotFoundError as error:
+    showwarning('Error', 'gnome-terminal no esta instalado')
+    raise SystemExit
+
 
 ####################################################################################
 ###################################### Loop ########################################

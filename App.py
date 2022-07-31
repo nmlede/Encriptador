@@ -115,7 +115,8 @@ def borrar_informacion():
     print('[INFO] Borrar informacion.\n')
     
     while True:
-        borrar=int(input('[ACC] 1- Mensajes.\n2- Claves.\n3- Encriptados.\n'))
+        print('[ACC] Seleccione una opcion:')
+        borrar=int(input('1- Mensajes.\n2- Claves.\n3- Encriptados.\n'))
         
         if (borrar==1):
             pwd_mensajes=os.listdir(pwd+FOLDERS[0])
